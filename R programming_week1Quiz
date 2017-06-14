@@ -1,0 +1,80 @@
+11. Use the Week 1 Quiz Data Set to answer questions 11-20.
+In the dataset provided for this Quiz, what are the column names of the dataset?
+Ozone, Solar.R, Wind, Temp, Month, Day
+>MyData<-read.csv(file="hw1_data.csv", header=TRUE, sep=",")
+
+
+12. Extract the first 2 rows of the data frame and print them to the console. What does the output look like?
+> head(MyData)
+  Ozone Solar.R Wind Temp Month Day
+1    41     190  7.4   67     5   1
+2    36     118  8.0   72     5   2
+3    12     149 12.6   74     5   3
+4    18     313 11.5   62     5   4
+5    NA      NA 14.3   56     5   5
+6    28      NA 14.9   66     5   6
+
+13. How many observations (i.e. rows) are in this data frame?
+> dim(MyData)
+[1] 153   6
+
+14. Extract the last 2 rows of the data frame and print them to the console. What does the output look like?
+> tail(MyData)
+    Ozone Solar.R Wind Temp Month Day
+148    14      20 16.6   63     9  25
+149    30     193  6.9   70     9  26
+150    NA     145 13.2   77     9  27
+151    14     191 14.3   75     9  28
+152    18     131  8.0   76     9  29
+153    20     223 11.5   68     9  30
+
+15. What is the value of Ozone in the 47th row?
+> MyData[47,]
+   Ozone Solar.R Wind Temp Month Day
+47    21     191 14.9   77     6  16
+
+16. How many missing values are in the Ozone column of this data frame?
+> summary(MyData)
+     Ozone           Solar.R           Wind             Temp      
+ Min.   :  1.00   Min.   :  7.0   Min.   : 1.700   Min.   :56.00  
+ 1st Qu.: 18.00   1st Qu.:115.8   1st Qu.: 7.400   1st Qu.:72.00  
+ Median : 31.50   Median :205.0   Median : 9.700   Median :79.00  
+ Mean   : 42.13   Mean   :185.9   Mean   : 9.958   Mean   :77.88  
+ 3rd Qu.: 63.25   3rd Qu.:258.8   3rd Qu.:11.500   3rd Qu.:85.00  
+ Max.   :168.00   Max.   :334.0   Max.   :20.700   Max.   :97.00  
+ NA's   :37       NA's   :7                                       
+     Month            Day      
+ Min.   :5.000   Min.   : 1.0  
+ 1st Qu.:6.000   1st Qu.: 8.0  
+ Median :7.000   Median :16.0  
+ Mean   :6.993   Mean   :15.8  
+ 3rd Qu.:8.000   3rd Qu.:23.0  
+ Max.   :9.000   Max.   :31.0  
+
+
+17. What is the mean of the Ozone column in this dataset? Exclude missing values (coded as NA) from this calculation.
+> summary(na.omit(MyData) )
+     Ozone          Solar.R           Wind            Temp           Month      
+ Min.   :  1.0   Min.   :  7.0   Min.   : 2.30   Min.   :57.00   Min.   :5.000  
+ 1st Qu.: 18.0   1st Qu.:113.5   1st Qu.: 7.40   1st Qu.:71.00   1st Qu.:6.000  
+ Median : 31.0   Median :207.0   Median : 9.70   Median :79.00   Median :7.000  
+ Mean   : 42.1   Mean   :184.8   Mean   : 9.94   Mean   :77.79   Mean   :7.216  
+ 3rd Qu.: 62.0   3rd Qu.:255.5   3rd Qu.:11.50   3rd Qu.:84.50   3rd Qu.:9.000  
+ Max.   :168.0   Max.   :334.0   Max.   :20.70   Max.   :97.00   Max.   :9.000  
+      Day       
+ Min.   : 1.00  
+ 1st Qu.: 9.00  
+ Median :16.00  
+ Mean   :15.95  
+ 3rd Qu.:22.50  
+ Max.   :31.00  
+
+
+18. Extract the subset of rows of the data frame where Ozone values are above 31 and Temp values are above 90. What is the mean of Solar.R in this subset?
+> summary(subset(MyData, Ozone>31 & Temp>90))
+
+19. What is the mean of "Temp" when "Month" is equal to 6?
+> summary(subset(MyData,Month==6))
+
+20. What was the maximum ozone value in the month of May (i.e. Month is equal to 5)?
+> summary(subset(MyData,Month==5))
