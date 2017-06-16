@@ -1,0 +1,42 @@
+Part 1
+
+Write a function named 'pollutantmean' that calculates the mean of a pollutant (sulfate or nitrate) across a specified list of monitors
+
+files<-list.files(directory)
+
+pollutantmean<-function(files, pollutant, id=1:332){
+
+#create a blank list for R to store the files
+
+  dfs<-list()
+
+  for(i in id){
++   dfs[[i]]<-read.csv(files[i], header = TRUE)
++   }
++ 
++ #find the mean
++ big_df<-do.call(rbind, dfs)
++   mean<-mean(big_df[ , eval(pollutant)], na.rm = TRUE)
++ 
++ return(mean)
++ 
++ }
+
+> pollutantmean(files, "sulfate", 1:10)
+[1] 4.064128
+
+
+Part2
+
+> complete<-function(files, id=1:332){
++  z<-data.frame( ) 
++  dfs<-list()
++  for (i in id){
++   dfs[[i]]<-read.csv(files[i], header = TRUE)
++   }
+nobs<-sum(!is.na(dfs[[i]][, 2]) & !is.na(dfs[[i]][, 3]))
+
++ z<-cbind(id,nobs)
++ return(z)
++ }
+> complete(files, 3)
