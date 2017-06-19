@@ -16,7 +16,7 @@ pollutantmean<-function(files, pollutant, id=1:332){
 + 
 + #find the mean
 + big_df<-do.call(rbind, dfs)
-+   mean<-mean(big_df[ , eval(pollutant)], na.rm = TRUE)
++   mean<-mean(big_df[ , eval(pollutant)], na.rm = TRUE)  
 + 
 + return(mean)
 + 
@@ -29,14 +29,16 @@ pollutantmean<-function(files, pollutant, id=1:332){
 Part2
 
 > complete<-function(files, id=1:332){
-+  z<-data.frame( ) 
-+  dfs<-list()
-+  for (i in id){
-+   dfs[[i]]<-read.csv(files[i], header = TRUE)
-+   }
-nobs<-sum(!is.na(dfs[[i]][, 2]) & !is.na(dfs[[i]][, 3]))
-
-+ z<-cbind(id,nobs)
-+ return(z)
-+ }
+ z<-data.frame( ) 
+  dfs<-list()
+  for (i in id){
+  dfs[[i]]<-read.csv(files[i], header=TRUE)
+ comp[[i]]<-sum(!is.na(dfs[[i]][,2])&!is.na(dfs[[i]][,3]))    # ~comp[[i]]<-sum(!is.na(dfs[[i]]$sulfate)&!is.na(dfs[[i]]$nitrate))
+ }
+ nobs<-unlist(comp)
+ z<-cbind(id,nobs)  # ~ z<- as.data.frame(cbind(id, nobs))
+ return(z)
+ }
+ 
+ 
 > complete(files, 3)
